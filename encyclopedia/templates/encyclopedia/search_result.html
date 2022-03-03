@@ -1,0 +1,24 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Search Result
+{% endblock %}
+
+{% block body %}
+{% if entries %}
+<h2>Entries</h2>
+<ul>
+    {% for entry in entries %}
+    <a href="{{entry}}">
+        <li> {{entry}}</li>
+    </a>
+    {% endfor %}
+</ul>
+{% else %}
+<h1>Not found</h1>
+<div class="alert pl-0" role="alert">
+    Could not found any entry with "{{searched}}".
+</div>
+
+{% endif %}
+{% endblock %}

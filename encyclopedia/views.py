@@ -28,8 +28,10 @@ def search(request):
         searched = request.GET.get("q")
         entry = util.get_entry(searched)
         if not entry:
-            return render(request, "encyclopedia/error.html", {
-                "error": "No entry found for search " + searched
+            entries = [entry for entry in util.list_entries() if searched.lower() in entry.lower()]
+            return render(request, "encyclopedia/search_result.html", {
+                "entries": entries,
+                "searched":searched
             })
         context = {
             "name": searched,
