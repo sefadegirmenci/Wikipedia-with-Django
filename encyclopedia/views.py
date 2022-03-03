@@ -1,6 +1,7 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from matplotlib.style import context
-from django import forms 
+from django import forms
 from . import util
 
 
@@ -41,4 +42,10 @@ def search(request):
     return render(request, "encyclopedia/error.html")
 
 def newpage(request):
-    return render(request, "encyclopedia/new_page.html")
+    if request.method == "POST":
+        title = request.POST.get("new-page-title")
+        content = request.POST.get("new-page-content")
+        util.save_entry(title,content)
+        return HttpResponseRedirect(title)
+    else:
+        return render(request, "encyclopedia/new_page.html")
