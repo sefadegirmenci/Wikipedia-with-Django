@@ -36,3 +36,10 @@ textarea {
 .sidebar h2 {
     margin-top: 5px;
 }
+
+#page_title{
+    max-width: 20vw;
+    max-height: 10vh;
+    margin-top: 5px;
+
+}

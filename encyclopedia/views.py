@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from matplotlib.style import context
-
+from django import forms 
 from . import util
 
 
@@ -39,3 +39,6 @@ def search(request):
         }
         return render(request, "encyclopedia/entry.html", context)
     return render(request, "encyclopedia/error.html")
+
+def newpage(request):
+    return render(request, "encyclopedia/new_page.html")
