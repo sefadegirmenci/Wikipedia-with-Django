@@ -4,6 +4,7 @@ from matplotlib.style import context
 from django import forms
 from . import util
 import markdown2
+import random
 
 def index(request):
     return render(request, "encyclopedia/index.html", {
@@ -65,3 +66,9 @@ def editpage(request):
             "title":title,
             "content":content
             })
+def randompage(request):
+    entries = util.list_entries()
+    size = len(entries)
+    rand = random.randint(0,size-1)
+    entry = entries[rand]
+    return HttpResponseRedirect(entry)
