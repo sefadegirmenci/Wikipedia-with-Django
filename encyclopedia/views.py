@@ -45,6 +45,10 @@ def newpage(request):
     if request.method == "POST":
         title = request.POST.get("new-page-title")
         content = request.POST.get("new-page-content")
+        if util.get_entry(title):
+            return render(request, "encyclopedia/error.html", {
+                "error": "Page with title " + title + " already exists"
+            })
         util.save_entry(title,content)
         return HttpResponseRedirect(title)
     else:
