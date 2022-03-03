@@ -3,7 +3,7 @@ from django.shortcuts import render
 from matplotlib.style import context
 from django import forms
 from . import util
-
+import markdown2
 
 def index(request):
     return render(request, "encyclopedia/index.html", {
@@ -12,11 +12,13 @@ def index(request):
 
 
 def entry(request, name):
-    entry = util.get_entry(name)
-    if not entry:
+    markdown_entry = util.get_entry(name)
+    if not markdown_entry:
         return render(request, "encyclopedia/error.html", {
             "error": "Could not find entry "+name
         })
+    
+    entry= markdown2.markdown(markdown_entry)
     context = {
         "name": name,
         "entry": entry
@@ -34,11 +36,7 @@ def search(request):
                 "entries": entries,
                 "searched":searched
             })
-        context = {
-            "name": searched,
-            "entry": entry
-        }
-        return render(request, "encyclopedia/entry.html", context)
+        return HttpResponseRedirect(searched)
     return render(request, "encyclopedia/error.html")
 
 def newpage(request):
@@ -53,3 +51,17 @@ def newpage(request):
         return HttpResponseRedirect(title)
     else:
         return render(request, "encyclopedia/new_page.html")
+
+def editpage(request):
+    if request.method == "POST":
+        title = request.POST.get("new-page-title")
+        content = request.POST.get("new-page-content")
+        util.save_entry(title,content)
+        return HttpResponseRedirect(title)
+    elif request.method == "GET":
+        title = request.GET.get("title")
+        content = util.get_entry(title)
+        return render(request, "encyclopedia/edit.html",{
+            "title":title,
+            "content":content
+            })

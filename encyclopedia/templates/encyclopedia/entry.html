@@ -5,5 +5,11 @@
 {% endblock %}
 
 {% block body %}
-{{entry}}
+{{entry|safe}}
+<br>
+
+<form action="{% url 'encyclopedia:edit-page' %}" >
+    <input type="text" value="{{name}}" name="title" hidden>
+    <input type="submit" value = "Edit the entry" class="btn btn-default m-0 p-0"></button>
+</form>
 {% endblock %}
