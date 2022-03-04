@@ -21,5 +21,6 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('encyclopedia/',include("encyclopedia.urls")),
+    path('wiki/',include("encyclopedia.urls")),
     path('', include("encyclopedia.urls"))
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

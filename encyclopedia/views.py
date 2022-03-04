@@ -6,13 +6,18 @@ from . import util
 import markdown2
 import random
 
+image_links=[]
 def index(request):
+    entries = util.list_entries()
+
     return render(request, "encyclopedia/index.html", {
-        "entries": util.list_entries()
+        "entries": entries,
+        "image_links": image_links
     })
 
 
 def entry(request, name):
+    name=name.strip()
     markdown_entry = util.get_entry(name)
     if not markdown_entry:
         return render(request, "encyclopedia/error.html", {
@@ -42,7 +47,7 @@ def search(request):
 
 def newpage(request):
     if request.method == "POST":
-        title = request.POST.get("new-page-title")
+        title = request.POST.get("new-page-title").strip()
         content = request.POST.get("new-page-content")
         if util.get_entry(title):
             return render(request, "encyclopedia/error.html", {

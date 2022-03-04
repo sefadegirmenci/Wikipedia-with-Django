@@ -1,45 +1,155 @@
 body {
+    width: 100%;
     margin: 0;
-    background-color: white;
+    background-color: #FAF4E8;
 }
 
+a{
+    text-decoration: none;
+}
 code {
     white-space: pre;
 }
 
-h1 {
+.main h2,.main h1{
     margin-top: 0px;
     padding-top: 20px;
+    color:#549e89 ;
+    text-align: center;
 }
-
+.main li{
+    color: black;
+}
 textarea {
     height: 90vh;
     width: 80%;
 }
 
 .main {
-    padding: 10px;
-}
-
-.search {
-    width: 100%;
-    font-size: 15px;
-    line-height: 15px;
-}
-
-.sidebar {
-    background-color: #f0f0f0;
-    height: 100vh;
     padding: 20px;
+}
+/* Edit Page */
+#page_title{
+    max-width: 40vw;
+    max-height: 30vh;
+    margin-top: 5px;
+}
+#edit-page-form{
+    text-align: right;
+    font-size: 13px;
+}
+/* Side Bar */
+.sidebar {
+    background-color: #D15A88 ;
+    height: 100vh;
+    display:flex;
+    flex-direction: column; /*To make items be put on the next row */
+    align-items:center;
+    justify-content:center; /*To vertically align*/
+}
+
+/* Horizontal divider */
+hr {
+    width: 100%;
 }
 
 .sidebar h2 {
     margin-top: 5px;
 }
 
-#page_title{
-    max-width: 40vw;
-    max-height: 30vh;
-    margin-top: 5px;
+.sidebar a{
+    color: whitesmoke;
+    text-decoration: none;
+    text-shadow: 1px 1px 0px #ff0000;
+}
 
+
+.sidebarlink{
+    margin-bottom: 10px;
+}
+
+/* Entry Page */
+#entry{
+    margin-left: 20px;
+}
+
+/* Search Field */
+
+.form {
+    position: relative
+}
+
+.form .fa-search {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: #9ca3af
+}
+
+.form span {
+    position: absolute;
+    right: 17px;
+    top: 13px;
+    padding: 2px;
+    border-left: 1px solid #d1d5db
+}
+
+.left-pan {
+    padding-left: 7px
+}
+
+.left-pan i {
+    padding-left: 10px
+}
+
+.form-input {
+    height: 35px;
+    text-indent: 33px;
+    border-radius: 10px;
+}
+
+/* PlaceHolder Font */
+input,
+input::-webkit-input-placeholder {
+    font-size: 15px;
+    line-height: 3;
+}
+
+.form-input:focus {
+    box-shadow: none;
+    border: none
+}
+
+/* Comment */
+.date {
+    font-size: 11px
+}
+
+.comment-text {
+    font-size: 12px
+}
+
+.fs-12 {
+    font-size: 12px
+}
+
+.shadow-none {
+    box-shadow: none
+}
+
+.name {
+    color: #007bff
+}
+
+.cursor:hover {
+    color: blue
+}
+
+.cursor {
+    cursor: pointer
+}
+
+.textarea {
+    resize: none;
+    width: 40vw;
 }

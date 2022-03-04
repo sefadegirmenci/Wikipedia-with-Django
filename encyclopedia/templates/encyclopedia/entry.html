@@ -1,15 +1,35 @@
 {% extends "encyclopedia/layout.html" %}
+{% load static %}
 
 {% block title %}
 {{name}}
 {% endblock %}
 
 {% block body %}
-{{entry|safe}}
-<br>
+<div id="entry" class="d-flex justify-content-center px-0 flex-column">
+    <form id="edit-page-form" action="{% url 'encyclopedia:edit-page' %}" >
+        <input type="text" value="{{name}}" class="m-0 p-0" name="title" hidden>
+        <i class="fa fa-pencil"></i><input type="submit" value = "Edit" class="btn ml-2 p-0">
+    </form>
+    {{entry|safe}}
+    
+    
+    <div id="comment">
+        <div class="mt-2">
+            <div class="d-flex flex-row fs-12">
+                <div class="like p-2 cursor"><i class="fa fa-thumbs-o-up"></i><span class="ml-1">Like</span></div>
+                <div class="like p-2 cursor"><i class="fa fa-commenting-o"></i><span class="ml-1">Comment</span></div>
+                <div class="like p-2 cursor"><i class="fa fa-share"></i><span class="ml-1">Share</span></div>
+            </div>
+        </div>
+        <div class="p-2">
+            <div class="d-flex flex-row align-items-start">
+                <img class="rounded-circle" src="{% static 'encyclopedia/user.jpeg' %} " width="40">
+                <textarea class="form-control ml-1 shadow-none textarea"></textarea>
+            </div>
+            <div class="mt-2 pl-5 text-left"><button class="btn btn-primary btn-sm shadow-none" type="button">Post comment</button><button class="btn btn-outline-primary btn-sm ml-1 shadow-none" type="button">Cancel</button></div>
+        </div>
+    </div>
+</div>
 
-<form action="{% url 'encyclopedia:edit-page' %}" >
-    <input type="text" value="{{name}}" name="title" hidden>
-    <input type="submit" value = "Edit the entry" class="btn btn-default m-0 p-0"></button>
-</form>
-{% endblock %}
+    {% endblock %}
